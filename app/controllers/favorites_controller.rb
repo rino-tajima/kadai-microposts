@@ -9,12 +9,12 @@ class FavoritesController < ApplicationController
   def create
     current_user.like(params[:micropost_id])
     flash[:success] = 'いいねしました。'
-    redirect_to root_path
+    redirect_to current_user
   end
 
   def destroy
     current_user.unlike(params[:micropost_id])
     flash[:success] = 'いいねを解除しました。'
-    redirect_to root_path
+    redirect_to current_user
   end
 end
