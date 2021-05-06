@@ -29,7 +29,7 @@ class MicropostsController < ApplicationController
   end
   
   def correct_user
-    @microposts = current_user.feed_microposts.order(id: :desc).page(params[:page])
+   @micropost = current_user.microposts.find_by(id: params[:id])
     unless @micropost
       redirect_to root_url
     end
