@@ -1,6 +1,11 @@
 class FavoritesController < ApplicationController
   before_action :require_user_logged_in
   
+  def index
+    @users = User.order(id: :desc).page(params[:page]).per(25)
+    @likes = current_user.likes.order(id: :desc).page(params[:page])
+  end
+  
   def create
     current_user.like(params[:micropost_id])
     flash[:success] = 'いいねしました。'
